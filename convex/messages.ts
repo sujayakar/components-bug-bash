@@ -1,5 +1,8 @@
-import { query, mutation } from "./_generated/server";
+import { query, mutation, action } from "./_generated/server";
 import { v } from "convex/values";
+import { ActionCache } from "@convex-dev/action-cache";
+import { api, components } from "./_generated/api";
+import { FunctionReference } from "convex/server";
 
 export const list = query({
   args: {},
@@ -17,3 +20,14 @@ export const send = mutation({
     await ctx.db.insert("messages", { body, author });
   },
 });
+
+export const exampleAction = action({
+  handler: async (ctx) => {
+    return "Hello World";
+  },
+});
+
+export const cachedExampleAction: ActionCache<FunctionReference<"action">> =
+  new ActionCache(components.actionCache, {
+    action: api.messages.exampleAction,
+  });
