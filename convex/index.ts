@@ -45,10 +45,10 @@ export const rateLimiter = new RateLimiter(components.ratelimiter, {
 export const crons = new Crons(components.crons);
 export const shardedCounter = new ShardedCounter(components.shardedCounter);
 
-if (!process.env.TWILIO_PHONE_NUMBER) {
-  throw new Error("TWILIO_PHONE_NUMBER is not set");
-}
-export const twilio = new Twilio(components.twilio, {
-  defaultFrom: process.env.TWILIO_PHONE_NUMBER!,
-});
+// if (!process.env.TWILIO_PHONE_NUMBER) {
+//   throw new Error("TWILIO_PHONE_NUMBER is not set");
+// }
+// export const twilio = new Twilio(components.twilio, {
+//   defaultFrom: process.env.TWILIO_PHONE_NUMBER!,
+// });
 export const workflow = new WorkflowManager(components.workflow);
